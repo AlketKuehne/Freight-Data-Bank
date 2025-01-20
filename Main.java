@@ -15,7 +15,7 @@ public class Main {
 
                 System.out.println("================MAKE YOUR ORDER================");
 
-                System.out.print("Please enter your name: ");
+                System.out.print("Please enter your name: ");           
                 shipment.setName(scanner.nextLine());
 
                 System.out.print("Please enter point of loading: ");
@@ -27,7 +27,7 @@ public class Main {
                 System.out.print("Please enter weight (in kg): ");
                 shipment.setWeight(scanner.nextInt());
 
-                scanner.nextLine(); // Consume the newline character left by nextInt()
+                scanner.nextLine(); 
 
                 System.out.print("Please enter dimensions (length x width x height in cm): ");
                 String dimensions = scanner.nextLine();
@@ -43,8 +43,6 @@ public class Main {
                 moreShipments = scanner.nextLine().equalsIgnoreCase("yes");
             }
         }
-
-        // Save the list of shipments in a file
         try (FileWriter writer = new FileWriter("Shipments.txt")) {
             for (Shipment shipment : listOfShipments) {
                 writer.write(shipment.toString() + "\n");
@@ -64,7 +62,6 @@ public class Main {
         }
     }
 }
-
 class Shipment {
     private String name;
     private int weight;
@@ -75,7 +72,6 @@ class Shipment {
     private String pointOfLoading;
     private String pointOfDischarge;
 
-    // Getters and setters
     public String getName() {
         return name;
     }
