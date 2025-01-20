@@ -38,11 +38,13 @@ public class Main {
                 shipment.setVolume(shipment.getLength() * shipment.getWidth() * shipment.getHeight());
 
                 listOfShipments.add(shipment);
-
+                // Asks if you want to add more shipments
                 System.out.print("Do you want to add another shipment? (yes/no): ");
                 moreShipments = scanner.nextLine().equalsIgnoreCase("yes");
             }
         }
+        /* If "Shipments.txt" file doesn't exist it creates 
+        it for you and saves the shipments you created  */ 
         try (FileWriter writer = new FileWriter("Shipments.txt")) {
             for (Shipment shipment : listOfShipments) {
                 writer.write(shipment.toString() + "\n");
@@ -50,7 +52,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        // Executes the Shipments in this format
         System.out.println("----------------All Shipments----------------");
         for (Shipment shipment : listOfShipments) {
             System.out.println("Name:     " + shipment.getName());
@@ -62,6 +64,7 @@ public class Main {
         }
     }
 }
+
 class Shipment {
     private String name;
     private int weight;
@@ -75,67 +78,52 @@ class Shipment {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public int getWeight() {
         return weight;
     }
-
     public void setWeight(int weight) {
         this.weight = weight;
     }
-
     public int getLength() {
         return length;
     }
-
     public void setLength(int length) {
         this.length = length;
     }
-
     public int getWidth() {
         return width;
     }
-
     public void setWidth(int width) {
         this.width = width;
     }
-
     public int getHeight() {
         return height;
     }
-
     public void setHeight(int height) {
         this.height = height;
     }
-
     public int getVolume() {
         return volume;
     }
-
     public void setVolume(int volume) {
         this.volume = volume;
     }
-
     public String getPointOfLoading() {
         return pointOfLoading;
     }
-
     public void setPointOfLoading(String pointOfLoading) {
         this.pointOfLoading = pointOfLoading;
     }
-
     public String getPointOfDischarge() {
         return pointOfDischarge;
     }
-
     public void setPointOfDischarge(String pointOfDischarge) {
         this.pointOfDischarge = pointOfDischarge;
     }
-
+// Code below is for the "Shipments.txt" format
     @Override
     public String toString() {
         return "Shipment{" +
