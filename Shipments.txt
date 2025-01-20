@@ -1,0 +1,1 @@
+Shipment{name='Alket Rrushi', weight=2000, length=200, width=200, height=4444, volume=177760000, pointOfLoading='Hamburg', pointOfDischarge='Tirana'}
