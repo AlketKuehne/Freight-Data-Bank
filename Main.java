@@ -9,6 +9,17 @@ public class Main {
     public static void main(String[] args) {
         List<Shipment> listOfShipments = new ArrayList<>();
 
+        /*
+         * Requirement:
+         * 1. Show a menu where the user can select what to do
+         * 1.1. 1 - Create shipment
+         * 1.2. 2 - Show existing shipments
+         * 1.3. 3 - Exit
+         * 
+         * Bugs:
+         * Validate dimension and provide proper error message and retry
+         */
+
         try (Scanner scanner = new Scanner(System.in)) {    // Opens scanner to read user input from console and ensures it gets closed after use
             boolean moreShipments = true;
             while (moreShipments) {                         // Starts a loop as long as more shipments are being added
