@@ -1,21 +1,22 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileWriter;      // Imports class FileWriter to write files
+import java.io.IOException;     // Imports class IOException for error handling in file operations
+import java.io.Serializable;    // Imports interface Serializable to serialize objects
+import java.util.ArrayList;     // Imports class ArrayList for dynamic arrays
+import java.util.List;          // Imports interface List for collections
+import java.util.Scanner;       // Imports class Scanner to read user input
 
 public class Main {
     public static void main(String[] args) {
         List<Shipment> listOfShipments = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(System.in)) {
+        try (Scanner scanner = new Scanner(System.in)) {    // Opens scanner to read user input from console and ensures it gets closed after use
             boolean moreShipments = true;
-            while (moreShipments) {
-                Shipment shipment = new Shipment();
+            while (moreShipments) {                         // Starts a loop as long as more shipments are being added
+                Shipment shipment = new Shipment();         // Creates a new Shipment object for each new shipment
 
                 System.out.println("================MAKE YOUR ORDER================");
 
-                System.out.print("Please enter your name: ");           
+                System.out.print("Please enter your name: ");
                 shipment.setName(scanner.nextLine());
 
                 System.out.print("Please enter point of loading: ");
@@ -27,15 +28,15 @@ public class Main {
                 System.out.print("Please enter weight (in kg): ");
                 shipment.setWeight(scanner.nextInt());
 
-                scanner.nextLine(); 
+                scanner.nextLine();
 
                 System.out.print("Please enter dimensions (length x width x height in cm): ");
-                String dimensions = scanner.nextLine();
-                String[] values = dimensions.split("x");
+                String dimensions = scanner.nextLine();     // Reads dimensions as single string input
+                String[] values = dimensions.split("x");    // Splits the dimensions into length, width, and height
                 shipment.setLength(Integer.parseInt(values[0].trim()));
                 shipment.setWidth(Integer.parseInt(values[1].trim()));
                 shipment.setHeight(Integer.parseInt(values[2].trim()));
-                shipment.setVolume(shipment.getLength() * shipment.getWidth() * shipment.getHeight());
+                shipment.setVolume(shipment.getLength() * shipment.getWidth() * shipment.getHeight());  // Calculates and sets the volume of the shipment
 
                 listOfShipments.add(shipment);
                 // Asks if you want to add more shipments
@@ -43,11 +44,9 @@ public class Main {
                 moreShipments = scanner.nextLine().equalsIgnoreCase("yes");
             }
         }
-        /* If "Shipments.txt" file doesn't exist it creates 
-        it for you and saves the shipments you created  */ 
-        try (FileWriter writer = new FileWriter("Shipments.txt")) {
+        try (FileWriter writer = new FileWriter("Shipments.txt", true)) {  // Opens FileWriter in append mode
             for (Shipment shipment : listOfShipments) {
-                writer.write(shipment.toString() + "\n");
+                writer.write(shipment.toString() + "\n");                  // Writes the information of the shipment into the "Shipments.txt" file
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +64,9 @@ public class Main {
     }
 }
 
-class Shipment {
+class Shipment implements Serializable {        // Allows the object to be Serializable
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private int weight;
     private int length;
@@ -123,7 +124,8 @@ class Shipment {
     public void setPointOfDischarge(String pointOfDischarge) {
         this.pointOfDischarge = pointOfDischarge;
     }
-// Code below is for the "Shipments.txt" format
+
+    // Code below is for the "Shipments.txt" format
     @Override
     public String toString() {
         return "Shipment{" +
@@ -138,3 +140,4 @@ class Shipment {
                 '}';
     }
 }
+// Done
