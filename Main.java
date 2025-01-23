@@ -5,6 +5,8 @@ import java.util.ArrayList;     // Imports class ArrayList for dynamic arrays
 import java.util.List;          // Imports interface List for collections
 import java.util.Scanner;       // Imports class Scanner to read user input
 
+/*
+*/
 public class Main {
     public static void main(String[] args) {
         List<Shipment> listOfShipments = new ArrayList<>();
