@@ -1,3 +1,4 @@
 Shipment{name='Alket Rrushi', weight=200, length=200, width=211, height=555, volume=23421000, pointOfLoading='Hambur', pointOfDischarge='Tirana'}
 Shipment{name='Moritz Mustermann', weight=20000, length=1000, width=1000, height=1000, volume=1000000000, pointOfLoading='Hamburg', pointOfDischarge='Rotterdam'}
 Shipment{name='Simon Bitkau', weight=20000, length=2000, width=1000, height=1000, volume=2000000000, pointOfLoading='Chicago', pointOfDischarge='Hamburg'}
+Shipment{name='asas', weight=1000, length=100, width=200, height=300, volume=6000000, pointOfLoading='sa', pointOfDischarge='sa'}
