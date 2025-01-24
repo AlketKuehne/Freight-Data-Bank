@@ -10,59 +10,59 @@ import java.util.Scanner;       // Imports class Scanner to read user input
 public class Main {
     @SuppressWarnings("CallToPrintStackTrace")
     public static void main(String[] args) {
-        List<Shipment> listOfShipments = new ArrayList<>();
+        List<Shipment> listOfShipments = new ArrayList<>(); // List to save shipments
 
-        try (Scanner scanner = new Scanner(System.in)) {    // Opens scanner to read user input from console and ensures it gets closed after use
-            String userChoice = "";
+        try (Scanner scanner = new Scanner(System.in)) {    // Opens scanner to read user input from console
+            String userChoice = "";        // Variable to save users choices
 
-            while (true) {
+            while (true) {  // Loop until valid input
                 System.out.print("Do you want to create new shipments or view existing ones? (create/view): ");
-                userChoice = scanner.nextLine();
+                userChoice = scanner.nextLine(); // Get users choice for "create" or "view" option
 
                 if (userChoice.equalsIgnoreCase("create") || userChoice.equalsIgnoreCase("view")) {
-                    break;
+                    break;  // Exits the loop if input is valid
                 } else {
-                    System.out.println("Error: Invalid Input.");
+                    System.out.println("Error: Invalid Input."); // Error message for invalid input
                 }
             }
 
-            if (userChoice.equalsIgnoreCase("create")) {
-                boolean moreShipments = true;
-                while (moreShipments) {                         // Starts a loop as long as more shipments are being added
-                    Shipment shipment = new Shipment();         // Creates a new Shipment object for each new shipment
+            if (userChoice.equalsIgnoreCase("create")) {      // If user wants to create shipments
+                boolean moreShipments = true;                              
+                while (moreShipments) {                                     // Starts a loop as long as more shipments are being added
+                    Shipment shipment = new Shipment();                     // Creates a new Shipment object for each new shipment
 
-                    System.out.println("================MAKE YOUR ORDER================");
+                    System.out.println("================MAKE YOUR ORDER================");  // Headline
 
-                    boolean validInput = false;
-                    while (!validInput) {
+                    boolean validInput = false;     
+                    while (!validInput) {   // Loop to get valid name input
                         System.out.print("Please enter your name: ");
-                        String name = scanner.nextLine();
-                        if (name.matches("[a-zA-Z\\s]+")) {
-                            shipment.setName(name);
-                            validInput = true;
+                        String name = scanner.nextLine();   // Reads input
+                        if (name.matches("[a-zA-Z\\s]+")) {     // Ensures name only contains letters
+                            shipment.setName(name); 
+                            validInput = true;  
                         } else {
                             System.out.println("Error: Invalid Input. Name should only contain letters.");
                         }
                     }
 
                     validInput = false;
-                    while (!validInput) {
+                    while (!validInput) { // Loops until valid port of loading
                         System.out.print("Please enter port of loading: ");
                         String portOfLoading = scanner.nextLine();
-                        if (portOfLoading.matches("[a-zA-Z\\s]+")) {
-                            shipment.setPortOfLoading(portOfLoading);
+                        if (portOfLoading.matches("[a-zA-Z\\s]+")) {    // Ensures it contains only letters
+                            shipment.setPortOfLoading(portOfLoading);   // Sets the port of loading
                             validInput = true;
                         } else {
                             System.out.println("Error: Invalid Input. Port of loading should only contain letters.");
                         }
                     }
 
-                    validInput = false;
-                    while (!validInput) {
-                        System.out.print("Please enter port of discharge: ");
-                        String portOfDischarge = scanner.nextLine();
-                        if (portOfDischarge.matches("[a-zA-Z\\s]+")) {
-                            shipment.setPortOfDischarge(portOfDischarge);
+                    validInput = false; 
+                    while (!validInput) {   
+                        System.out.print("Please enter port of discharge: ");   // Loops until valid port of discharge input
+                        String portOfDischarge = scanner.nextLine(); 
+                        if (portOfDischarge.matches("[a-zA-Z\\s]+")) {  // Validate input
+                            shipment.setPortOfDischarge(portOfDischarge);   // Sets port of loading
                             validInput = true;
                         } else {
                             System.out.println("Error: Invalid Input. Port of discharge should only contain letters.");
@@ -70,32 +70,33 @@ public class Main {
                     }
 
                     validInput = false;
-                    while (!validInput) {
+                    while (!validInput) {   // Loops until valid weight input
                         System.out.print("Please enter weight (in kg): ");
-                        if (scanner.hasNextInt()) {
-                            shipment.setWeight(scanner.nextInt());
+                        if (scanner.hasNextInt()) {     // Checks if input valid integer
+                            shipment.setWeight(scanner.nextInt());  // Sets weight of shipment
                             validInput = true;
                         } else {
                             System.out.println("Error: Invalid Input.");
-                            scanner.next(); // clear the invalid input
+                            scanner.next(); 
                         }
                     }
 
                     scanner.nextLine();
 
                     validInput = false;
-                    while (!validInput) {
+                    while (!validInput) {   // Loops until valid dimensions input
                         System.out.print("Please enter dimensions (length x width x height in cm): ");
                         String dimensions = scanner.nextLine();     // Reads dimensions as single string input
                         String[] values = dimensions.split("x");    // Splits the dimensions into length, width, and height
-                        if (values.length == 3) {
+                        if (values.length == 3) {   // Ensures thee are exactly 3 values
                             try {
+                                // Code below analyses dimensions and calculates volume
                                 shipment.setLength(Integer.parseInt(values[0].trim()));
                                 shipment.setWidth(Integer.parseInt(values[1].trim()));
                                 shipment.setHeight(Integer.parseInt(values[2].trim()));
                                 shipment.setVolume(shipment.getLength() * shipment.getWidth() * shipment.getHeight());  // Calculates and sets the volume of the shipment
                                 validInput = true;
-                            } catch (NumberFormatException e) {
+                            } catch (NumberFormatException e) {     // Catch invalid format
                                 System.out.println("Error: Invalid Input.");
                             }
                         } else {
@@ -103,16 +104,16 @@ public class Main {
                         }
                     }
 
-                    listOfShipments.add(shipment);
+                    listOfShipments.add(shipment);  // Adds the created shipment to the list
                     // Asks if you want to add more shipments
                     while (true) {
                         System.out.print("Do you want to add another shipment? (yes/no): ");
                         String addMoreChoice = scanner.nextLine();
                         if (addMoreChoice.equalsIgnoreCase("yes")) {
-                            moreShipments = true;
+                            moreShipments = true;   // Contiune if "yes"
                             break;
                         } else if (addMoreChoice.equalsIgnoreCase("no")) {
-                            moreShipments = false;
+                            moreShipments = false;  // Stop if "no"
                             break;
                         } else {
                             System.out.println("Error: Invalid Input.");
@@ -124,10 +125,10 @@ public class Main {
                 while (true) {
                     System.out.print("Do you want to confirm or cancel your shipments? (confirm/cancel): ");
                     String confirmChoice = scanner.nextLine();
-                    if (confirmChoice.equalsIgnoreCase("confirm")) {
-                        try (FileWriter writer = new FileWriter("Shipments.txt", true)) {  // Opens FileWriter in append mode
+                    if (confirmChoice.equalsIgnoreCase("confirm")) {    // Confirm
+                        try (FileWriter writer = new FileWriter("Shipments.txt", true)) {  // Opens FileWriter
                             for (Shipment shipment : listOfShipments) {
-                                writer.write(shipment.toString() + "\n");                  // Writes the information of the shipment into the "Shipments.txt" file
+                                writer.write(shipment.toString() + "\n");   // Writes the information of the shipment into the "Shipments.txt" file
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -136,12 +137,12 @@ public class Main {
                         // Display created shipments at the end
                         System.out.println("-------------Confirmed Shipments-------------");
                         for (Shipment shipment : listOfShipments) {
-                            System.out.println(shipment);
+                            System.out.println(shipment);   // Prints each created shipments 
                         }
                         System.out.println("---------------------------------------------");
                         break;
 
-                    } else if (confirmChoice.equalsIgnoreCase("cancel")) {
+                    } else if (confirmChoice.equalsIgnoreCase("cancel")) {  // Cancelled
                         System.out.println("Your shipments have been cancelled.");
                         break;
                     } else {
@@ -149,12 +150,12 @@ public class Main {
                     }
                 }
 
-            } else if (userChoice.equalsIgnoreCase("view")) {
+            } else if (userChoice.equalsIgnoreCase("view")) { // If user wants to view existing shipments
                 try {
-                    List<String> lines = Files.readAllLines(Paths.get("Shipments.txt"));
+                    List<String> lines = Files.readAllLines(Paths.get("Shipments.txt"));    // Reads all lines from file "Shipments.txt"
                     System.out.println("----------------All Shipments----------------");
                     for (String line : lines) {
-                        System.out.println(line);
+                        System.out.println(line);   // Displays each line an existing shipment from "Shipments.txt"
                     }
                     System.out.println("--------------------------------------------");
                 } catch (IOException e) {
@@ -168,15 +169,16 @@ public class Main {
 class Shipment implements Serializable {        // Allows the object to be Serializable
     private static final long serialVersionUID = 1L;
 
-    private String name;
-    private int weight;
-    private int length;
-    private int width;
-    private int height;
-    private int volume;
-    private String portOfLoading;
-    private String portOfDischarge;
+    private String name;    // Name of Shipment
+    private int weight;     // Weight of Shipment
+    private int length;     // Length of Shipment
+    private int width;      // Width of Shipment
+    private int height;     // Height of Shipment
+    private int volume;     // Calculated value from the dimensions of Shipment
+    private String portOfLoading;   // Port of Loading of Shipment
+    private String portOfDischarge; // Port of Discharge of Shipment
 
+    // Getters and setters
     public String getName() {
         return name;
     }
