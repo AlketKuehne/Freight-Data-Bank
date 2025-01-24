@@ -47,25 +47,25 @@ public class Main {
 
                     validInput = false;
                     while (!validInput) {
-                        System.out.print("Please enter point of loading: ");
-                        String pointOfLoading = scanner.nextLine();
-                        if (pointOfLoading.matches("[a-zA-Z\\s]+")) {
-                            shipment.setPointOfLoading(pointOfLoading);
+                        System.out.print("Please enter port of loading: ");
+                        String portOfLoading = scanner.nextLine();
+                        if (portOfLoading.matches("[a-zA-Z\\s]+")) {
+                            shipment.setPortOfLoading(portOfLoading);
                             validInput = true;
                         } else {
-                            System.out.println("Error: Invalid Input. Point of loading should only contain letters.");
+                            System.out.println("Error: Invalid Input. Port of loading should only contain letters.");
                         }
                     }
 
                     validInput = false;
                     while (!validInput) {
-                        System.out.print("Please enter point of discharge: ");
-                        String pointOfDischarge = scanner.nextLine();
-                        if (pointOfDischarge.matches("[a-zA-Z\\s]+")) {
-                            shipment.setPointOfDischarge(pointOfDischarge);
+                        System.out.print("Please enter port of discharge: ");
+                        String portOfDischarge = scanner.nextLine();
+                        if (portOfDischarge.matches("[a-zA-Z\\s]+")) {
+                            shipment.setPortOfDischarge(portOfDischarge);
                             validInput = true;
                         } else {
-                            System.out.println("Error: Invalid Input. Point of discharge should only contain letters.");
+                            System.out.println("Error: Invalid Input. Port of discharge should only contain letters.");
                         }
                     }
 
@@ -174,8 +174,8 @@ class Shipment implements Serializable {        // Allows the object to be Seria
     private int width;
     private int height;
     private int volume;
-    private String pointOfLoading;
-    private String pointOfDischarge;
+    private String portOfLoading;
+    private String portOfDischarge;
 
     public String getName() {
         return name;
@@ -213,30 +213,30 @@ class Shipment implements Serializable {        // Allows the object to be Seria
     public void setVolume(int volume) {
         this.volume = volume;
     }
-    public String getPointOfLoading() {
-        return pointOfLoading;
+    public String getPortOfLoading() {
+        return portOfLoading;
     }
-    public void setPointOfLoading(String pointOfLoading) {
-        this.pointOfLoading = pointOfLoading;
+    public void setPortOfLoading(String portOfLoading) {
+        this.portOfLoading = portOfLoading;
     }
-    public String getPointOfDischarge() {
-        return pointOfDischarge;
+    public String getPortOfDischarge() {
+        return portOfDischarge;
     }
-    public void setPointOfDischarge(String pointOfDischarge) {
-        this.pointOfDischarge = pointOfDischarge;
+    public void setPortOfDischarge(String portOfDischarge) {
+        this.portOfDischarge = portOfDischarge;
     }
-
+    // Code below is for "Shipments.txt" format and "Confirmed Shipments"
     @Override
     public String toString() {
         return "Shipment{" +
                 "name='" + name + '\'' +
-                ", weight=" + weight +
-                ", length=" + length +
-                ", width=" + width +
-                ", height=" + height +
-                ", volume=" + volume +
-                ", pointOfLoading='" + pointOfLoading + '\'' +
-                ", pointOfDischarge='" + pointOfDischarge + '\'' +
+                ", weight = " + weight +
+                ", length = " + length +
+                ", width = " + width +
+                ", height = " + height +
+                ", volume = " + volume +
+                ", portOfLoading = '" + portOfLoading + '\'' +
+                ", portOfDischarge = '" + portOfDischarge + '\'' +
                 '}';
     }
 }
