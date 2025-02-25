@@ -1,1 +1,2 @@
 Shipment{name='Alket Rrushi', weight=2000, length=200, width=200, height=2000, volume=80000000, pointOfLoading='HAM', pointOfDischarge='RTM'}
+Shipment{name='Alket Rrushi', weight = 200, length = 200, width = 100, height = 70, volume = 1400000, portOfLoading = 'Hamburg', portOfDischarge = 'Shanghai'}
